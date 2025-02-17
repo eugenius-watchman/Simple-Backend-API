@@ -1,4 +1,8 @@
 import { StatusCodes } from "http-status-codes";
+import pino from 'pino';
+
+
+const logger = pino();
 
 import userService from "../services/user.service.js";
 
@@ -19,6 +23,7 @@ const getAllUsers = (req, res) => {
     const users = userService.getAllUsers();
 
     if (users.length){
+        logger.info(`Fetching all users.`);
         return res.status(StatusCodes.OK).send(users);
     }
 
@@ -40,6 +45,7 @@ const getUser = (req, res) => {
     const user = userService.getUser(id);
 
     if (user){
+        logger.info(`Fetching ${id} user.`);
         return res.status(StatusCodes.OK).send({
             status: STATUS.success,
             user,
@@ -64,6 +70,8 @@ const addUser = (req, res) => {
   
     //add users
     const addedUser = userService.addUser(user);
+
+    logger.info('Creating a user.');
 
     return res.status(StatusCodes.CREATED).send({
         status: STATUS.success,
@@ -92,6 +100,8 @@ const updateUser = (req, res) => {
             status: STATUS.success,
             message: updatedUser,
         });
+
+        logger.info(`Updating ${4} user.`);
     } else {
         return res.status(StatusCodes.NOT_FOUND).send({
             status: STATUS.failure,
@@ -118,6 +128,8 @@ const deleteUser = (req, res) => {
             status: STATUS.success,
             message: `User ${id} deleted successfully.`,
         });
+
+        logger.info(`Deleting ${id} a user.`);
     } else {
         return res.status(StatusCodes.NOT_FOUND).send({
             status: STATUS.failure,
