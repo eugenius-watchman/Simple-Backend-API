@@ -45,7 +45,7 @@ const getUser = (req, res) => {
     const user = userService.getUser(id);
 
     if (user){
-        logger.info(`Fetching ${id} user.`);
+        logger.info(`Fetching user ID ${id}.`);
         return res.status(StatusCodes.OK).send({
             status: STATUS.success,
             user,
@@ -96,13 +96,13 @@ const updateUser = (req, res) => {
     const updatedUser = userService.updateUser(id, user);
 
     if (updatedUser) {
+        logger.info(`Updating user ID ${id}.`);
+
         return res.status(StatusCodes.OK).send({
             status: STATUS.success,
             message: updatedUser,
         });
-
-        logger.info(`Updating ${4} user.`);
-    } else {
+        } else {
         return res.status(StatusCodes.NOT_FOUND).send({
             status: STATUS.failure,
             message: `User ${id} not found.`,
@@ -124,12 +124,12 @@ const deleteUser = (req, res) => {
     if (user) {
         userService.removeUser(id);
 
+        logger.info(`Deleting user ID ${id}.`);
+
         return res.status(StatusCodes.OK).send({
             status: STATUS.success,
             message: `User ${id} deleted successfully.`,
         });
-
-        logger.info(`Deleting ${id} a user.`);
     } else {
         return res.status(StatusCodes.NOT_FOUND).send({
             status: STATUS.failure,
