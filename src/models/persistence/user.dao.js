@@ -18,8 +18,8 @@ const getAll = () => users;
 
 /**
  * update a user using its id
- * @param {*} userId 
- * @param {*} newDetails 
+ * @param {*} userId integer
+ * @param {*} newDetails object
  * @returns 
  */
 const update = (userId, newDetails) => {
