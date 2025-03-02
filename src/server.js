@@ -1,14 +1,15 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import rateLimit from 'express-rate-limit';
+import compression from "compression";
+
 //import pino from 'pino';
 
 
 
 import mainRoutes from './main.routes.js';
 import userRoutes from './user.routes.js';
-import rateLimit from 'express-rate-limit';
-import compression from "compression";
 
 const app = express();
 const port = 3000;
@@ -34,5 +35,5 @@ app.use('/v1/user', userRoutes);
 
 // tell express what port to listen
 app.listen(port, ()=> {
-    console.log(`Eugene, go to http://localhost:${port}`)
-})
+    console.log(`Eugene! Server is running on http://localhost:${port}`)
+});

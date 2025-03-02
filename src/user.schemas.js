@@ -2,7 +2,7 @@ import * as yup from 'yup'
 
 const MINIMUM_LENGTH = {
     name: 2,
-    city: 1,
+    city: 2,
     country: 2
 };
 

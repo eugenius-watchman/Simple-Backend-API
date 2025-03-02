@@ -1,0 +1,127 @@
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import Layout from './Layout';
+
+
+
+const CreateUser = () => {
+    const createUserEndpoint = 'http://localhost:3000/v1/user';
+    
+    // fields for retrieving from form 
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+
+    // function to handle data 
+    const submitForm = async (event) => {
+         
+        event.preventDefault();
+
+        // multiple data to send to API
+        const payload = {
+            name,
+            email,
+            city,
+            country,
+        };
+
+        try {
+            const {data: apiResponse} = await axios.post(`${createUserEndpoint}`, payload)
+
+            // optional chaining operator
+            if (apiResponse?.status) {
+                const getUserId = apiResponse?.user?.id; 
+
+                // success message
+                toast.success(`User ${getUserId} created successfully.`);
+
+                // clear data states after receiving
+                setName('');
+                setEmail('');
+                setCity('');
+                setCountry('');
+
+            } else {
+                // warning message
+                toast.warn('Error! User not created.')
+            }
+        } catch (error) {
+
+            const fixCaps = (message) => 
+                message[0].toUpperCase() +  message.substring(1);
+
+            const getErrorMessage = () => {
+
+            const {  
+                data: {
+                    errors : { body },
+                },
+               
+            } = error.response;
+ 
+            const message = body[0]?.message;
+
+            // uppercase the first letter of the error message
+            return fixCaps(message);
+            };
+
+
+            toast.error(getErrorMessage());
+        }
+    };
+    return(
+        <Layout>
+            <Row className="justify-content-center">
+                <Col lg={6}>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Name"
+                                onChange={(fieldElement) => setName(fieldElement.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Email"
+                                onChange={(fieldElement) => setEmail(fieldElement.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>City</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="City"
+                                onChange={(fieldElement) => setCity(fieldElement.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Country</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Country"
+                                onChange={(fieldElement) => setCountry(fieldElement.target.value)}
+                            />
+                        </Form.Group>
+                        
+                        <Button variant="primary" type="submit" onClick={submitForm}>
+                            Add User
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+        </Layout>
+        
+    );                       
+    
+};
+export default CreateUser;
