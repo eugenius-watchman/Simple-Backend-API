@@ -7,9 +7,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 // local
-import UsersList from './components/UsersList.jsx';
-import CreateUser from './components/CreateUser.jsx';
-import RetrieveUser from './components/RetrieveUser.jsx';
+import UsersList from './components/user/UsersList.jsx';
+import CreateUser from './components/user/CreateUser.jsx';
+import RetrieveUser from './components/user/RetrieveUser.jsx';
 
 
 
