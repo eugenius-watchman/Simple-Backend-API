@@ -10,12 +10,12 @@ const TopNavigation = () => {
           <Navbar.Brand as={NavLink} to="/">Simple Client</Navbar.Brand>
           <Nav className="flex-grow-1 justify-content-end">
             {/* <Nav.Link as={NavLink} to="/">Home</Nav.Link> */}
-            <Nav.Link as={NavLink} to="/create ">Create User</Nav.Link>
+            <Nav.Link as={NavLink} to="/create" className="badge bg-primary text-wrap text-white">Create User</Nav.Link>
             {/* <Nav.Link as={NavLink} to="/">Home</Nav.Link> */}
           </Nav>
         </Container>
       </Navbar>
-    
+     
     
     </>  
     )

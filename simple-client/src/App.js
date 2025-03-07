@@ -7,9 +7,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 // local
-import UsersList from './components/user/UsersList.jsx';
-import CreateUser from './components/user/CreateUser.jsx';
-import RetrieveUser from './components/user/RetrieveUser.jsx';
+import UsersList from './pages/user/UsersList.jsx';
+import CreateUser from './pages/user/CreateUser.jsx';
+import RetrieveUser from './pages/user/RetrieveUser.jsx';
+import EditUser from './pages/user/EditUser.jsx';
+import DeleteUser from './pages/user/DeleteUser.jsx';
+import Contact from './static/Contact.jsx';
+import AboutUs from './static/AboutUs.jsx';
 
 
 
@@ -28,6 +32,11 @@ const ClientApp = () => {
                 <Route path="/" element={<UsersList/>} />
                 <Route path="/create" element={<CreateUser/>} />
                 <Route path="/:userId" element={<RetrieveUser/>} />
+                <Route path="/edit/:userId" element={<EditUser/>} />
+                <Route path="/delete/:userId" element={<DeleteUser/>} />
+                <Route path="/contact" element={<Contact/>} />
+                <Route path="/about" element={<AboutUs/>} />
+
               </Routes>
             </BrowserRouter>
         </Container>
