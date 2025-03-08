@@ -13,7 +13,7 @@
 
 
     const {data: apiResponse} = await axios.post(
-        createUserEndpoint,
+        createUserEndpoint, 
          payload
         );
 
@@ -61,6 +61,9 @@ export const retrieveAllUsers = async () => {
         const getAllUsersUrlEndpoint = `${baseApiUrl}/user/all`;
     
     const { data: apiResponse } = await axios.get(getAllUsersUrlEndpoint);
+
+    // set script to sleep for 1 secs
+    // await new Promise((r) => setTimeout(r, 1000));
 
     return apiResponse; 
     
