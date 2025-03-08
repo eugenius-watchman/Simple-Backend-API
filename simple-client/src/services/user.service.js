@@ -2,36 +2,36 @@
 
  const baseApiUrl = 'http://localhost:3000/v1';
 
- const headers = {
-    'Accept': 'application/json',
-     'Content-type': 'application/json'
-    };
-    
+//  const headers = {
+//     'Accept': 'application/json',
+//      'Content-type': 'application/json'
+//     };
+
 // createUser
  export const createUser = async (payload) => {
     const createUserEndpoint = `${baseApiUrl}/user`;
 
 
-    // const {data: apiResponse} = await axios.post(
-    //     createUserEndpoint,
-    //      payload
-    //     );
+    const {data: apiResponse} = await axios.post(
+        createUserEndpoint,
+         payload
+        );
 
-    //     return apiResponse;
+        return apiResponse;
 
      
     // headers for native JS fetch
    
     
-        const method = "POST";
+        // const method = "POST";
         
-        const rowResponse = await fetch(createUserEndpoint, {
-            method, 
-            headers, 
-            body: JSON.stringify(payload),
-        });
+        // const rowResponse = await fetch(createUserEndpoint, {
+        //     method, 
+        //     headers, 
+        //     body: JSON.stringify(payload),
+        // });
     
-            return rowResponse.json();
+        //     return rowResponse.json();
 }
  
 
