@@ -63,7 +63,7 @@ export const retrieveAllUsers = async () => {
     const { data: apiResponse } = await axios.get(getAllUsersUrlEndpoint);
 
     // set script to sleep for 1 secs
-    // await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 1000));
 
     return apiResponse; 
     
